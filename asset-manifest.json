@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/image-text-converter/static/js/main.a030a8b6.js",
+    "static/js/787.e06be776.chunk.js": "/image-text-converter/static/js/787.e06be776.chunk.js",
+    "index.html": "/image-text-converter/index.html",
+    "main.a030a8b6.js.map": "/image-text-converter/static/js/main.a030a8b6.js.map",
+    "787.e06be776.chunk.js.map": "/image-text-converter/static/js/787.e06be776.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a030a8b6.js"
+  ]
+}
