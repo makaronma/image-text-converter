@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { createWorker } from "tesseract.js";
 
 function App() {
-  const [ocr, setOcr] = useState("Recognizing...");
+  const [result, setResult] = useState("");
+  const [status, setStatus] = useState("Recognizing...");
   const [file, setFile] = useState(null);
 
   const doOCR = useCallback(async (file) => {
@@ -15,16 +16,17 @@ function App() {
     await worker.initialize("eng");
     const {
       data: { text },
-    } = await worker.recognize(
-      "https://tesseract.projectnaptha.com/img/eng_bw.png"
-    );
-    setOcr(text);
+    } = await worker.recognize(file);
+    setResult(text);
+    setStatus("done");
   }, []);
 
   useEffect(() => {
-    if (!file) return;
-    console.log(file);
-    setOcr("Recognizing...");
+    if (!file) {
+      setStatus("");
+      return;
+    }
+    setStatus("recognizing...");
     doOCR(file);
   }, [doOCR, file]);
 
@@ -39,7 +41,9 @@ function App() {
         <input type="file" name="file" id="file" />
         <button type="submit">Submit</button>
       </form>
-      <p>{ocr}</p>
+      <h3>Status: {status}</h3>
+      <h3>Result:</h3>
+      <p>{result}</p>
     </div>
   );
 }
